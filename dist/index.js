@@ -621,7 +621,7 @@ class GitCommandManager {
             if (!refSpec.some(x => x === refHelper.tagsRefSpec)) {
                 args.push('--no-tags');
             }
-            args.push('--prune', '--progress', '--no-recurse-submodules');
+            args.push('--prune', '--progress', '--no-recurse-submodules', '--filter=tree:0');
             if (fetchDepth && fetchDepth > 0) {
                 args.push(`--depth=${fetchDepth}`);
             }
@@ -696,8 +696,8 @@ class GitCommandManager {
     }
     log1(format) {
         return __awaiter(this, void 0, void 0, function* () {
-            var args = format ? ['log', '-1', format] : ['log', '-1'];
-            var silent = format ? false : true;
+            const args = format ? ['log', '-1', format] : ['log', '-1'];
+            const silent = format ? false : true;
             const output = yield this.execGit(args, false, silent);
             return output.stdout;
         });

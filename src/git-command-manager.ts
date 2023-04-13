@@ -207,7 +207,12 @@ class GitCommandManager {
       args.push('--no-tags')
     }
 
-    args.push('--prune', '--progress', '--no-recurse-submodules')
+    args.push(
+      '--prune',
+      '--progress',
+      '--no-recurse-submodules',
+      '--filter=tree:0'
+    )
     if (fetchDepth && fetchDepth > 0) {
       args.push(`--depth=${fetchDepth}`)
     } else if (
@@ -288,8 +293,8 @@ class GitCommandManager {
   }
 
   async log1(format?: string): Promise<string> {
-    var args = format ? ['log', '-1', format] : ['log', '-1']
-    var silent = format ? false : true
+    const args = format ? ['log', '-1', format] : ['log', '-1']
+    const silent = format ? false : true
     const output = await this.execGit(args, false, silent)
     return output.stdout
   }
