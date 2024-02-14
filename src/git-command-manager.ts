@@ -254,7 +254,7 @@ class GitCommandManager {
       args.push('--no-tags')
     }
 
-    args.push('--prune', '--no-recurse-submodules')
+    args.push('--prune', '--no-recurse-submodules', '--filter=tree:0')
     if (options.showProgress) {
       args.push('--progress')
     }

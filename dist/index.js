@@ -640,7 +640,7 @@ class GitCommandManager {
             if (!refSpec.some(x => x === refHelper.tagsRefSpec) && !options.fetchTags) {
                 args.push('--no-tags');
             }
-            args.push('--prune', '--no-recurse-submodules');
+            args.push('--prune', '--no-recurse-submodules', '--filter=tree:0');
             if (options.showProgress) {
                 args.push('--progress');
             }
